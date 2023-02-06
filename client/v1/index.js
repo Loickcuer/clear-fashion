@@ -7,15 +7,15 @@ console.log('🚀 This is it.');
 const MY_FAVORITE_BRANDS = [
   {
     'name': 'Faguo',
-    'url': 'https://www.faguo-store.com'
+    'url': 'https://www.faguo-store.com',
   },
   {
     'name': 'Loom',
-    'url': 'https://www.loom.fr'
+    'url': 'https://www.loom.fr',
   },
   {
     'name': 'Ecclo',
-    'url': 'https://ecclo.fr/'
+    'url': 'https://ecclo.fr/',
   }
 ];
 
@@ -30,10 +30,13 @@ console.log(MY_FAVORITE_BRANDS[0]);
  */
 
 // 🎯 TODO 1: The cheapest t-shirt
+console.log("TO DO 1")
 // 0. I have 3 favorite brands stored in MY_FAVORITE_BRANDS variable
 // 1. Create a new variable and assign it the link of the cheapest t-shirt
 // I can find on these e-shops
+const ct = "https://ecclo.fr/products/t-shirt-noir-boycott-world-cup-2022";
 // 2. Log the variable
+console.log(ct);
 
 /**
  * 👕
@@ -43,33 +46,82 @@ console.log(MY_FAVORITE_BRANDS[0]);
  * The variable is loaded by the file `data.js`
  * 👕
  */
+console.log(marketplace)
 
 // 🎯 TODO 2: Number of products
+console.log("TO DO 2")
 // 1. Create a variable and assign it the number of products
 // 2. Log the variable
+const numberOfProducts = marketplace.length
+console.log(numberOfProducts)
 
 // 🎯 TODO 3: Brands name
+console.log("TO DO 3")
 // 1. Create a variable and assign it the list of brands name only
 // 2. Log the variable
 // 3. Log how many brands we have
+const BrandNames = []
+for(const product of marketplace)
+{
+  BrandNames.push(product.brand);
+}
+console.table(BrandNames);
+let uniqueBrandNames=[...new Set(BrandNames)];
+console.log(uniqueBrandNames)
+console.log(uniqueBrandNames.length)
 
 // 🎯 TODO 4: Sort by price
 // 1. Create a function to sort the marketplace products by price
 // 2. Create a variable and assign it the list of products by price from lowest to highest
 // 3. Log the variable
+console.log("TO DO 4")
+function sortMarketplaceByPrice(marketplace) 
+{
+  return marketplace.sort((a, b) => a.price - b.price);
+}
+const sortedProductsByPrice = sortMarketplaceByPrice(marketplace);
+console.table(sortedProductsByPrice);
 
 // 🎯 TODO 5: Sort by date
 // 1. Create a function to sort the marketplace objects by products date
 // 2. Create a variable and assign it the list of products by date from recent to old
 // 3. Log the variable
-
+console.log("TO DO 5")
+function sortMarketplaceByDate(marketplace) 
+{
+  return marketplace.sort((a, b) => new Date(a.released) - new Date(b.released));
+}
+const sortedProductsByDate = sortMarketplaceByDate(marketplace);
+console.table(sortedProductsByDate);
 // 🎯 TODO 6: Filter a specific price range
+console.log("TO DO 6")
 // 1. Filter the list of products between 50€ and 100€
 // 2. Log the list
 
+const output = [];
+for (let i = 0; i < marketplace.length; i++) 
+{
+  if ((marketplace[i].price > 50) && (marketplace[i].price < 100)) output.push(marketplace[i]);
+}
+console.table(output)
+
 // 🎯 TODO 7: Average price
+console.log("TO DO 7")
 // 1. Determine the average price of the marketplace
 // 2. Log the average
+
+const Prices = []
+for(const products of marketplace)
+{
+  Prices.push(products.price);
+}
+var sum =0
+for (let i = 0; i < marketplace.length; i++)
+{
+  sum+=Prices[i]
+}
+var average=sum/marketplace.length
+console.log("The marketplace's average price is : " +average)
 
 /**
  * 🏎
@@ -79,6 +131,7 @@ console.log(MY_FAVORITE_BRANDS[0]);
  */
 
 // 🎯 TODO 8: Products by brands
+console.log("TO DO 8")
 // 1. Create an object called `brands` to manipulate products by brand name
 // The key is the brand name
 // The value is the array of products
@@ -93,6 +146,47 @@ console.log(MY_FAVORITE_BRANDS[0]);
 //
 // 2. Log the variable
 // 3. Log the number of products by brands
+
+/*const brands = 
+{
+  panafrica: [],
+  loom: [],
+  hast: [],
+}
+for(const product of marketplace)
+{
+  if (product.brand ="panafrica")
+  {
+    brands.panafrica.push(product)
+  }
+  else if (product.brand ="loom")
+  {
+    brands.loom.push(product)
+  }
+  else if (product.brand ="hast")
+  {
+    brands.hast.push(product)
+  }
+}
+console.table(brands)
+console.log("The brand panafrica contains "+brands.panafrica.length+" products.")
+console.log("The brand loom contains "+brands.loom.length+" products.")
+console.log("The brand hast contains "+brands.hast.length+" products.")
+*/
+const brands = marketplace.reduce((acc, product) => {
+  if (!acc[product.brand]) {
+    acc[product.brand] = [];
+  }
+  acc[product.brand].push(product);
+  return acc;
+})
+
+console.log(brands)
+
+/*for (const brand in brands) 
+{
+  console.log(Number of products for brand "${brand}": ${brands[brand].length});
+}*/
 
 // 🎯 TODO 9: Sort by price for each brand
 // 1. For each brand, sort the products by price, from highest to lowest
