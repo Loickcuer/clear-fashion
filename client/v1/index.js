@@ -147,7 +147,7 @@ console.log("TO DO 8")
 // 2. Log the variable
 // 3. Log the number of products by brands
 
-/*const brands = 
+const brands = 
 {
   panafrica: [],
   loom: [],
@@ -168,25 +168,11 @@ for(const product of marketplace)
     brands.hast.push(product)
   }
 }
-console.table(brands)
+console.log(brands)
 console.log("The brand panafrica contains "+brands.panafrica.length+" products.")
 console.log("The brand loom contains "+brands.loom.length+" products.")
 console.log("The brand hast contains "+brands.hast.length+" products.")
-*/
-const brands = marketplace.reduce((acc, product) => {
-  if (!acc[product.brand]) {
-    acc[product.brand] = [];
-  }
-  acc[product.brand].push(product);
-  return acc;
-})
 
-console.log(brands)
-
-/*for (const brand in brands) 
-{
-  console.log(Number of products for brand "${brand}": ${brands[brand].length});
-}*/
 
 // 🎯 TODO 9: Sort by price for each brand
 // 1. For each brand, sort the products by price, from highest to lowest
